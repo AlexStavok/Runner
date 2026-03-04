@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "847724274761",
+    "project_id": "runner-2c17e",
+    "storage_bucket": "runner-2c17e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847724274761:android:6abc9b3a1e7686c4020b98",
+        "android_client_info": {
+          "package_name": "com.TestCompany.Runner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEr9PiBLgxvLzM9MNo09SfUUT7zPGIb9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
