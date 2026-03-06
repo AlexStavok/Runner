@@ -18,6 +18,7 @@ public class PlayerJumpState : PlayerState
     }
     public override void Exit()
     {
+
         Player.ColliderHolder.JumpCollinder.enabled = false;
         Debug.Log("Exit JumpState");
     }

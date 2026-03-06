@@ -35,10 +35,12 @@ public class FirebaseService : MonoBehaviour
 
     async private void Awake()
     {
-        if(Instance == null)
-        {
+        if (Instance == null)
             Instance = this;
-        }
+        else
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(this);
 
         var dependencyStatus = await FirebaseApp.CheckDependenciesAsync();
         if (dependencyStatus == DependencyStatus.Available)

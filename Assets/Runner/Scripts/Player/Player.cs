@@ -13,8 +13,18 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        PlayerStateMachine.Initialize(new PlayerRunState(this, PlayerStateMachine));
-        PlayerAnimatorController.OnBackToRun += PlayerAnimatorController_OnBackToRun;
+        PlayerStateMachine.Initialize(new PlayerIdleState(this, PlayerStateMachine));
+    }
+    private void PlayerAnimatorController_OnSlideEnd(object sender, System.EventArgs e)
+    {
+        ColliderHolder.SlideCollider.enabled = false;
+        ColliderHolder.RunCollider.enabled = true;
+    }
+
+    private void PlayerAnimatorController_OnJumpEnd(object sender, System.EventArgs e)
+    {
+        ColliderHolder.JumpCollinder.enabled = false;
+        ColliderHolder.RunCollider.enabled = true;
     }
 
     private void PlayerAnimatorController_OnBackToRun(object sender, System.EventArgs e)
@@ -29,6 +39,24 @@ public class Player : MonoBehaviour
     public void BackToRunState()
     {
         PlayerStateMachine.ChangeState(new PlayerRunState(this, PlayerStateMachine));
+    }
+    public void BackToIdleState()
+    {
+        PlayerStateMachine.ChangeState(new PlayerIdleState(this, PlayerStateMachine));
+    }
+    public void StartGame()
+    {
+        PlayerAnimatorController.OnBackToRun += PlayerAnimatorController_OnBackToRun;
+        PlayerAnimatorController.OnJumpEnd += PlayerAnimatorController_OnJumpEnd;
+        PlayerAnimatorController.OnSlideEnd += PlayerAnimatorController_OnSlideEnd;
+        BackToRunState();
+    }
+    public void EndGame()
+    {
+        PlayerAnimatorController.OnBackToRun -= PlayerAnimatorController_OnBackToRun;
+        PlayerAnimatorController.OnJumpEnd -= PlayerAnimatorController_OnJumpEnd;
+        PlayerAnimatorController.OnSlideEnd -= PlayerAnimatorController_OnSlideEnd;
+        BackToIdleState();
     }
 }
 

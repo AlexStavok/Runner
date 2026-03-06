@@ -1944,8 +1944,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1695953973199777018}
   - component: {fileID: 746573788787769316}
-  - component: {fileID: 2647656505119213465}
   - component: {fileID: 3040440224971340347}
+  - component: {fileID: 2647656505119213465}
   - component: {fileID: 4917129462093524704}
   - component: {fileID: 3649727214126228381}
   - component: {fileID: 4627525176523859304}
@@ -1986,20 +1986,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputSystem
   _player: {fileID: 3040440224971340347}
   _playerDashes: {fileID: 2647656505119213465}
---- !u!114 &2647656505119213465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3760209041776629880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9076d8608677c4a89d52764013b014, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDashes
-  _linesDistance: 1.5
-  _lineChangeSpeed: 5
 --- !u!114 &3040440224971340347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2017,6 +2003,20 @@ MonoBehaviour:
     JumpCollinder: {fileID: 3649727214126228381}
     SlideCollider: {fileID: 4627525176523859304}
   PlayerAnimatorController: {fileID: 8036062220755387806}
+--- !u!114 &2647656505119213465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3760209041776629880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9076d8608677c4a89d52764013b014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDashes
+  _linesDistance: 1.5
+  _lineChangeSpeed: 5
 --- !u!136 &4917129462093524704
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2036,7 +2036,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -2062,7 +2062,7 @@ CapsuleCollider:
   m_Radius: 0.4
   m_Height: 0.8
   m_Direction: 1
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Center: {x: 0, y: 1.8, z: 0}
 --- !u!136 &4627525176523859304
 CapsuleCollider:
   m_ObjectHideFlags: 0
