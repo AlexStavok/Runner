@@ -5,6 +5,8 @@ public class PlayerDashes : MonoBehaviour
     [SerializeField] private float _linesDistance;
     [SerializeField] private float _lineChangeSpeed;
 
+    [SerializeField] private GameConfig _gameConfig;
+
     private int _currentLine = 0;
     private Vector3 _targetPos;
 
@@ -12,6 +14,7 @@ public class PlayerDashes : MonoBehaviour
     private void Awake()
     {
         _targetPos = transform.position;
+        _lineChangeSpeed = _gameConfig.ChangeLineSpeed;
     }
     public void ProcessInput(EInputCommand inputCommand)
     {

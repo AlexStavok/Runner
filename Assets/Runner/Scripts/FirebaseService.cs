@@ -31,6 +31,7 @@ public class FirebaseService : MonoBehaviour
     public event EventHandler<PlayerData> OnPlayerDataLoaded;
     public event EventHandler<List<PlayerData>> OnLeaderboardLoaded;
     public event EventHandler OnPlayerDataUpdated;
+    public event EventHandler<int> OnPlayerRankLoaded;
     public event EventHandler OnFirebaseLoaded;
 
     async private void Awake()
@@ -201,9 +202,38 @@ public class FirebaseService : MonoBehaviour
                     PlayerData playerData = document.ConvertTo<PlayerData>();
                     
                     leaderboard.Add(playerData);
-
-                    OnLeaderboardLoaded?.Invoke(this, leaderboard);
                 }
+
+                OnLeaderboardLoaded?.Invoke(this, leaderboard);
+            });
+    }
+    public void RequestPlayerPosition()
+    {
+        var firestore = FirebaseFirestore.DefaultInstance;
+
+        firestore.Document(_playerPath + FirebaseAuth.DefaultInstance.CurrentUser.UserId)
+            .GetSnapshotAsync()
+            .ContinueWithOnMainThread(task =>
+            {
+                Assert.IsNull(task.Exception);
+
+                PlayerData playerData = task.Result.ConvertTo<PlayerData>();
+
+                int playerScore = playerData.RecordScore;
+
+                firestore.Collection("Players")
+                .WhereGreaterThan("RecordScore", playerScore)
+                .GetSnapshotAsync()
+                .ContinueWithOnMainThread(rankTask =>
+                {
+                    Assert.IsNull(rankTask.Exception);
+
+                    int playersAbove = rankTask.Result.Count;
+
+                    int rank = playersAbove + 1;
+
+                    OnPlayerRankLoaded?.Invoke(this, rank);
+                });
             });
     }
 }

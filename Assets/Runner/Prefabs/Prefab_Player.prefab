@@ -2017,6 +2017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDashes
   _linesDistance: 1.5
   _lineChangeSpeed: 5
+  _gameConfig: {fileID: 11400000, guid: 254a3e15e037b974fad47d9553ff72ff, type: 2}
 --- !u!136 &4917129462093524704
 CapsuleCollider:
   m_ObjectHideFlags: 0

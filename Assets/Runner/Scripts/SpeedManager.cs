@@ -11,9 +11,18 @@ public class SpeedManager : MonoBehaviour
 
     [SerializeField] private float _speedIncrementCooldown;
 
+    [SerializeField] private GameConfig _gameConfig;
+
     private float _timer;
 
     private bool isStarted = false;
+    private void Awake()
+    {
+        StartSpeed = _gameConfig.StartSpeed;
+        _speedIncrement = _gameConfig.SpeedIncrement;
+        _maxSpeed = _gameConfig.MaxSpeed;
+        _speedIncrementCooldown = _gameConfig.SpeedIncrementCooldown;
+    }
     private void Update()
     {
         if (!isStarted)

@@ -16,6 +16,8 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private int _defaultCapacity;
     [SerializeField] private int _maxSize;
 
+    [SerializeField] private GameConfig _gameConfig;
+
     private IObjectPool<Obstacle> _objectPool;
     private List<Obstacle> _activeObstacles;
 
@@ -28,6 +30,8 @@ public class ObstacleSpawner : MonoBehaviour
             _collectionCheck, _defaultCapacity, _maxSize);
 
         _activeObstacles = new List<Obstacle>();
+
+        _spawnCooldown = _gameConfig.SpawnCooldown;
     }
     private void Update()
     {
@@ -58,7 +62,7 @@ public class ObstacleSpawner : MonoBehaviour
     private Obstacle CreateObstacle()
     {
         EObstacleType randomType = (EObstacleType)Random.Range(0, (int)EObstacleType.Count);
-        Obstacle obstacle = _obstacleFactory.CreateObstacle(randomType);
+        Obstacle obstacle = _obstacleFactory.CreateObstacle(randomType, transform);
         obstacle.SetObstaclePool(_objectPool);
         return obstacle;
     }
@@ -84,8 +88,8 @@ public class ObstacleSpawner : MonoBehaviour
     }
     public void StartGame()
     {
-        SpawnObstacle();
         _spawnTimer = _spawnCooldown;
+
         _isStarted = true;
     }
     public void EndGame()

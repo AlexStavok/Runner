@@ -5,20 +5,20 @@ public class ObstacleFactory : MonoBehaviour
     [SerializeField] private Obstacle _obstacleJump;
     [SerializeField] private Obstacle _obstacleDash;
     [SerializeField] private Obstacle _obstacleSlide;
-    public Obstacle CreateObstacle(EObstacleType obstacleType)
+    public Obstacle CreateObstacle(EObstacleType obstacleType, Transform parentObject)
     {
         switch (obstacleType)
         {
             case EObstacleType.Jump:
-                Obstacle jumpObstacle = Instantiate(_obstacleJump);
+                Obstacle jumpObstacle = Instantiate(_obstacleJump, parentObject);
                 return jumpObstacle;
 
             case EObstacleType.Dash:
-                Obstacle dashObstacle = Instantiate(_obstacleDash);
+                Obstacle dashObstacle = Instantiate(_obstacleDash, parentObject);
                 return dashObstacle;
 
             case EObstacleType.Slide:
-                Obstacle slideObstacle = Instantiate(_obstacleSlide);
+                Obstacle slideObstacle = Instantiate(_obstacleSlide, parentObject);
                 return slideObstacle;
         }
         return null;

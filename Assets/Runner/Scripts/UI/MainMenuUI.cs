@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,7 +10,10 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button _leaderboardButton;
     [SerializeField] private Button _playButton;
 
+    [SerializeField] private TextMeshProUGUI _recordText;
+
     [SerializeField] private LeaderboardUI _leaderboardUI;
+    [SerializeField] private InGameUI _inGameUI;
 
     private void Start()
     {
@@ -30,14 +34,28 @@ public class MainMenuUI : MonoBehaviour
         _playButton.onClick.AddListener(() =>
         {
             GameManager.Instance.StartGame(true);
+            _inGameUI.Show();
         });
+
+        GameManager.Instance.OnRecordChanged += GameManager_OnRecordChanged;
     }
+
+    private void GameManager_OnRecordChanged(object sender, System.EventArgs e)
+    {
+        _recordText.text = $"Record: {GameManager.Instance.ScoreRecord}";
+    }
+
     public void Show()
     {
         gameObject.SetActive(true);
+        _recordText.text = $"Record: {GameManager.Instance.ScoreRecord.ToString()}";
     }
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnRecordChanged -= GameManager_OnRecordChanged;
     }
 }
