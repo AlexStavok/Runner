@@ -2,7 +2,6 @@ using Firebase;
 using Firebase.Auth;
 using Firebase.Extensions;
 using Firebase.Firestore;
-using NUnit.Framework;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -152,7 +151,11 @@ public class FirebaseService : MonoBehaviour
         firestore.Document(_playerPath + FirebaseAuth.DefaultInstance.CurrentUser.UserId)
             .GetSnapshotAsync().ContinueWithOnMainThread(task =>
             {
-                Assert.IsNull(task.Exception);
+                if (task.Exception != null)
+                {
+                    Debug.LogError(task.Exception);
+                    return;
+                }
 
                 var data = task.Result.ConvertTo<PlayerData>();
 
@@ -168,7 +171,11 @@ public class FirebaseService : MonoBehaviour
         firestore.Document(_playerPath + FirebaseAuth.DefaultInstance.CurrentUser.UserId)
             .GetSnapshotAsync().ContinueWithOnMainThread(task =>
             {
-                Assert.IsNull(task.Exception);
+                if (task.Exception != null)
+                {
+                    Debug.LogError(task.Exception);
+                    return;
+                }
 
                 PlayerData playerData = task.Result.ConvertTo<PlayerData>();
 
@@ -193,7 +200,11 @@ public class FirebaseService : MonoBehaviour
             .GetSnapshotAsync()
             .ContinueWithOnMainThread(task =>
             {
-                Assert.IsNull(task.Exception);
+                if (task.Exception != null)
+                {
+                    Debug.LogError(task.Exception);
+                    return;
+                }
 
                 List<PlayerData> leaderboard = new List<PlayerData>();
 
@@ -215,7 +226,11 @@ public class FirebaseService : MonoBehaviour
             .GetSnapshotAsync()
             .ContinueWithOnMainThread(task =>
             {
-                Assert.IsNull(task.Exception);
+                if (task.Exception != null)
+                {
+                    Debug.LogError(task.Exception);
+                    return;
+                }
 
                 PlayerData playerData = task.Result.ConvertTo<PlayerData>();
 
@@ -226,7 +241,11 @@ public class FirebaseService : MonoBehaviour
                 .GetSnapshotAsync()
                 .ContinueWithOnMainThread(rankTask =>
                 {
-                    Assert.IsNull(rankTask.Exception);
+                    if (task.Exception != null)
+                    {
+                        Debug.LogError(task.Exception);
+                        return;
+                    }
 
                     int playersAbove = rankTask.Result.Count;
 

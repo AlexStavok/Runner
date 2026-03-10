@@ -12,7 +12,7 @@ public class PlayerInputSystem : MonoBehaviour
 #if UNITY_EDITOR
         _inputStrategy = new KeyboardInputStrategy();
 #else
-        -inputStrategy = new SwipeInputStrategy();
+        _inputStrategy = new SwipeInputStrategy();
 #endif
         _inputStrategy.Enable();
         _inputStrategy.OnInputCommand += InputStrategy_OnInputCommand;

@@ -16,9 +16,6 @@ public class RegisterMenuUI : MonoBehaviour
     [SerializeField] private LoginMenuUI _loginMenuUI;
     private void Start()
     {
-        if (FirebaseService.Instance.IsLogged())
-            SceneManager.LoadScene("Scene_Game");
-
         _buttonRegister.onClick.AddListener(() =>
         {
             RegisterUser();
@@ -30,6 +27,13 @@ public class RegisterMenuUI : MonoBehaviour
         });
 
         FirebaseService.Instance.OnUserRegistrationSucceeded += FirebaseService_OnUserRegistrationSucceeded;
+        FirebaseService.Instance.OnFirebaseLoaded += FirebaseServise_OnFirebaseLoaded;
+    }
+
+    private void FirebaseServise_OnFirebaseLoaded(object sender, System.EventArgs e)
+    {
+        if (FirebaseService.Instance.IsLogged())
+            SceneManager.LoadScene("Scene_Game");
     }
 
     private void FirebaseService_OnUserRegistrationSucceeded(object sender, System.EventArgs e)
