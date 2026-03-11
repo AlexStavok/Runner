@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameConfig
   ChangeLineSpeed: 5
   SpawnCooldown: 2
+  SpawnEnviromentCooldown: 1
   StartSpeed: 5
   SpeedIncrement: 1
   MaxSpeed: 20

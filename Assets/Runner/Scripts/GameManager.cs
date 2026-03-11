@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerDashes _playerDashes;
     [SerializeField] private SpeedManager _speedTracker;
     [SerializeField] private ObstacleSpawner _obstacleSpawner;
+    [SerializeField] private EnviromentSpawner _enviromentSpawner;
 
     [SerializeField] private GameOverUI _gameOverUI;
 
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
         _playerDashes.StartGame();
         _speedTracker.StartGame(isRestartingScore);
         _obstacleSpawner.StartGame();
+        _enviromentSpawner.StartGame();
         _isPlaying = true;
     }
     public void EndGame()
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour
     public void ResetGameObjects()
     {
         _isPlaying = false;
+        _enviromentSpawner.EndGame();
         _obstacleSpawner.EndGame();
         _speedTracker.EndGame();
         _playerDashes.EndGame();

@@ -10,6 +10,9 @@ public class GameConfig : ScriptableObject
     [Header("ObstacleSpawner")]
     public float SpawnCooldown;
 
+    [Header("EnviromentSpawner")]
+    public float SpawnEnviromentCooldown;
+
     [Header("SpeedManager")]
     public float StartSpeed;
     public float SpeedIncrement;
